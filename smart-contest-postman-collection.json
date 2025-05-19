@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "7b166fad-8706-404b-acef-3d975d615799",
+		"name": "Contest Participation System",
+		"description": "API collection for testing the Contest Participation System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29394684"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"admin\",\n    \"lastName\": \"admin\",\n    \"email\": \"admin@contest.com\",\n    \"password\": \"adminPass789\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registers a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"jane.smith@example.com\",\n    \"password\": \"securePass456\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Logs in a user and sets authentication cookies"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@contest.com\",\n    \"password\": \"adminPass789\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Logs in as an admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Logs out the current user (requires authentication via cookies)"
+					},
+					"response": []
+				},
+				{
+					"name": "My Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/my-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"my-profile"
+							]
+						},
+						"description": "Retrieves the logged-in user's profile (requires authentication via cookies)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contests",
+			"item": [
+				{
+					"name": "Get All Contests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contests/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contests",
+								"all"
+							]
+						},
+						"description": "Retrieves a list of all contests"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contest by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contests/single/682b6cb80f32850c094d9d7a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contests",
+								"single",
+								"682b6cb80f32850c094d9d7a"
+							]
+						},
+						"description": "Retrieves a specific contest (replace ID with actual contest ID)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Skill Gala\",\n    \"description\": \"A fun tech contest for all!\",\n    \"startTime\": \"2023-11-01T09:00:00Z\",\n    \"endTime\": \"2023-11-01T11:00:00Z\",\n    \"accessLevel\": \"vip\",\n    \"prizeInfo\": \"1st: $200, 2nd: $100, 3rd: $50\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/contests/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contests",
+								"create"
+							]
+						},
+						"description": "Creates a new contest (admin-only, requires admin cookies)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Contest",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tech Trivia 2023\",\n    \"description\": \"description for the trivia contest.\",\n    \"startTime\": \"2024-01-01T09:00:00Z\",\n    \"endTime\": \"2024-03-01T11:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/contests/single/682b6cb80f32850c094d9d7a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contests",
+								"single",
+								"682b6cb80f32850c094d9d7a"
+							]
+						},
+						"description": "Updates a contest (admin-only, replace ID with actual contest ID)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Contest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contests/single/60c72b2f9b1e8c1a4c8e4b3a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contests",
+								"single",
+								"60c72b2f9b1e8c1a4c8e4b3a"
+							]
+						},
+						"description": "Deletes a contest (admin-only, replace ID with actual contest ID)"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Winners",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"winners\": [\n        {\n            \"userId\": \"682b70496835c3d8d3006cd7\",\n            \"position\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/contests/winner/682b6cb80f32850c094d9d7a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contests",
+								"winner",
+								"682b6cb80f32850c094d9d7a"
+							]
+						},
+						"description": "Sets winners for a contest (admin-only, replace IDs with actual values)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Create Question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questionText\": \"for which purpuse we use nodejs?\",\n    \"type\": \"single-select\",\n    \"options\": [\n        \"backend\",\n        \"single page application\",\n        \"ai\",\n        \"serverside rendring\"\n    ],\n    \"correctAnswer\": [\n        1\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/questions/contests/682b6cb80f32850c094d9d7a/questions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"questions",
+								"contests",
+								"682b6cb80f32850c094d9d7a",
+								"questions"
+							]
+						},
+						"description": "Adds a question to a contest (replace contest ID)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Question",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questionText\": \"Which language is widely used for web development?\",\n    \"options\": [\n        \"JavaScript\",\n        \"Python\",\n        \"C++\",\n        \"Rust\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/questions/questions/682b6ee1ce2c475c35a9fce7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"questions",
+								"questions",
+								"682b6ee1ce2c475c35a9fce7"
+							]
+						},
+						"description": "Updates a question (replace question ID)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/questions/questions/60c72b2f9b1e8c1a4c8e4b3b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"questions",
+								"questions",
+								"60c72b2f9b1e8c1a4c8e4b3b"
+							]
+						},
+						"description": "Deletes a question (replace question ID)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Participations",
+			"item": [
+				{
+					"name": "Join Contest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participations/contests/682b6cb80f32850c094d9d7a/join",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participations",
+								"contests",
+								"682b6cb80f32850c094d9d7a",
+								"join"
+							]
+						},
+						"description": "Joins a contest (replace contest ID, requires user cookies)"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Answers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"answers\": [\n        [\n            2\n        ]\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/participations/contests/682b6cb80f32850c094d9d7a/submit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participations",
+								"contests",
+								"682b6cb80f32850c094d9d7a",
+								"submit"
+							]
+						},
+						"description": "Submits answers for a contest (replace contest ID, requires user cookies)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Leaderboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participations/contests/682b6cb80f32850c094d9d7a/leaderboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participations",
+								"contests",
+								"682b6cb80f32850c094d9d7a",
+								"leaderboard"
+							]
+						},
+						"description": "Retrieves the contest leaderboard (replace contest ID)"
+					},
+					"response": []
+				},
+				{
+					"name": "My Participations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participations/my-participations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participations",
+								"my-participations"
+							]
+						},
+						"description": "Retrieves the user's participation history (requires user cookies)"
+					},
+					"response": []
+				},
+				{
+					"name": "My Prizes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participations/my-prizes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participations",
+								"my-prizes"
+							]
+						},
+						"description": "Retrieves the user's prizes (requires user cookies)"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
