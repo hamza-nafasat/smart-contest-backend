@@ -1,6 +1,4 @@
-POST /api/signup
-POST /api/login
-GET /api/user/profile
+
 GET /api/contests
 GET /api/contests/{contestId}
 POST /api/contests
