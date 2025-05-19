@@ -16,12 +16,6 @@ export const JWTService = () => {
         expiresIn: getEnv("REFRESH_TOKEN_EXPIRY_TIME"),
       });
     },
-    // create verification token
-    async verificationToken(_id) {
-      return jwt.sign({ _id }, getEnv("VERIFICATION_TOKEN_SECRET"), {
-        expiresIn: getEnv("VERIFICATION_TOKEN_EXPIRY_TIME"),
-      });
-    },
     // verify tokens
     async verifyToken(token, tokenSecret) {
       try {
