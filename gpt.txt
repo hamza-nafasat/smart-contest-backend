@@ -1,0 +1,37 @@
+=== Authentication & User ===
+POST   /auth/signup
+    Purpose: Register a new user. Assigns them the "Signed-in" role by default.
+POST   /auth/login
+    Purpose: Authenticate existing user credentials and issue a JWT stored in a cookie.
+POST   /auth/logout
+    Purpose: Invalidate the user’s current session/token.
+GET    /users/me
+    Purpose: Retrieve the currently authenticated user’s profile and role.
+
+=== Contest Discovery & Details ===
+GET    /contests
+    Purpose: List all contests accessible to the caller, filtering by their user role.
+GET    /contests/:contestId
+    Purpose: Fetch detailed information for a specific contest (name, description, timing, prize info, access level).
+
+=== Question Delivery ===
+GET    /contests/:contestId/questions
+    Purpose: Retrieve the full set of questions (and answer choices) for the specified contest.
+
+=== Participation & Submission ===
+POST   /contests/:contestId/participations
+    Purpose: (Optional) Explicitly register or “join” a contest before submitting answers.
+POST   /contests/:contestId/participations/:pid/submit
+    Purpose: Submit the user’s answers payload, calculate and return their score and completion timestamp.
+
+=== Leaderboard ===
+GET    /contests/:contestId/leaderboard
+    Purpose: Retrieve the ranking of all participants in a contest, ordered by score (descending).
+
+=== User History & Prizes ===
+GET    /users/me/participations?status=in-progress
+    Purpose: List contests the user has joined but not yet completed.
+GET    /users/me/participations?status=completed
+    Purpose: List contests the user has completed, including score and timestamp.
+GET    /users/me/prizes
+    Purpose: List all prizes the user has won, based on their completed contest participations.
