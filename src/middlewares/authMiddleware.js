@@ -6,7 +6,6 @@ import { JWTService } from "../utils/jwtService.js";
 import { accessTokenOptions } from "../configs/constants.js";
 
 // auth middleware
-// ---------------
 const isAuthenticated = asyncHandler(async (req, res, next) => {
   try {
     const accessToken = req?.cookies?.[getEnv("ACCESS_TOKEN_NAME")];
@@ -37,4 +36,9 @@ const isAuthenticated = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { isAuthenticated };
+const isAdmin = asyncHandler(async (req, res, next) => {
+  if (req?.user?.role !== "admin") return next(new CustomError(403, "Only Admin Allowed"));
+  return next();
+});
+
+export { isAuthenticated, isAdmin };
