@@ -8,7 +8,6 @@ import { JWTService } from "../utils/jwtService.js";
 import { sendToken } from "../utils/sendToken.js";
 
 // register
-// ---------
 const register = asyncHandler(async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   if (!firstName || !lastName || !email || !password) return next(new CustomError(400, "Please Provide all fields"));
@@ -25,7 +24,6 @@ const register = asyncHandler(async (req, res, next) => {
 });
 
 // login
-// ------
 const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) return next(new CustomError(400, "Please Provide Email and Password"));
@@ -37,7 +35,6 @@ const login = asyncHandler(async (req, res, next) => {
 });
 
 // logout
-// ---------
 const logout = asyncHandler(async (req, res, next) => {
   const refreshToken = req?.cookies?.[getEnv("REFRESH_TOKEN_NAME")];
   if (refreshToken) await JWTService().removeRefreshToken(refreshToken);
@@ -47,7 +44,6 @@ const logout = asyncHandler(async (req, res, next) => {
 });
 
 // get My Profile
-// ---------------
 const getMyProfile = asyncHandler(async (req, res, next) => {
   const userId = req?.user?._id;
   if (!isValidObjectId(userId)) return next(new CustomError(400, "Invalid User Id"));
