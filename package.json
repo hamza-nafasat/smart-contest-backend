@@ -1,5 +1,5 @@
 {
-  "name": "smart-parking-backend",
+  "name": "smart-contest-apis",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -7,21 +7,16 @@
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
-  "author": "",
+  "author": "Hamza Nafasat",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "cloudinary": "^2.5.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "datauri": "^4.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
-    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.7.0",
-    "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.16"
+    "mongoose": "^8.7.0"
   }
 }
